@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Detail5Food</string>
+    <string name="report_retaurant">Báo sai thông tin nhà hàng</string>
+    <string name="total_rating">đánh giá</string>
+    <string name="category">Café giải khát</string>
+    <string name="store_is_open">Đang mở cửa</string>
+    <string name="store_is_closed">Đóng cửa</string>
+    <string name="tv_user_rating_hint">Viết đánh giá của bạn về nhà hàng</string>
+    <string name="btn_upload_image">Đăng ảnh</string>
+    <string name="btn_check_in">Check-in</string>
+    <string name="btn_save">Lưu lại</string>
+    <string name="btn_call">Gọi điện</string>
+    <string name="btn_direct">Chỉ đường</string>
+    <string name="menu_category">Thực đơn</string>
+    <string name="parking">Giữ xe máy miễn phí</string>
+    <string name="air_conditioning">Có điều hòa</string>
+    <string name="wifi">Có wifi</string>
+    <string name="more_infomation">Xem thêm thông tin</string>
+    <string name="call">Gọi điện</string>
+    <string name="direct">Chỉ đường</string>
+</resources>
