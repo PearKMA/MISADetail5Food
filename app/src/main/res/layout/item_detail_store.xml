@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -14,9 +13,10 @@
         android:paddingBottom="8dp">
 
         <TextView
+            android:id="@+id/tvNameStore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{info.nameStore}"
+            android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@android:color/black"
             android:textStyle="bold"
@@ -25,7 +25,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/margin_small"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -33,13 +33,13 @@
                 android:layout_height="wrap_content">
 
                 <RatingBar
-                    android:id="@+id/rtTotalRate"
+                    android:id="@+id/rbTotalRate"
                     style="@style/ImageRatingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:isIndicator="true"
                     android:numStars="5"
-                    android:rating="@{info.totalRate}"
+                    android:rating="4.5"
                     android:stepSize="0.5" />
             </LinearLayout>
 
@@ -48,44 +48,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:text='@{info.totalFeedback+" "+@string/total_rating}'
+                android:layout_marginStart="@dimen/margin_small"
                 android:textColor="@android:color/black"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
-
-            <ImageView
-                android:id="@+id/ivCategory"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/ic_shopping" />
 
             <TextView
+                android:layout_marginTop="@dimen/margin_small"
+                android:drawableStart="@drawable/ic_shopping"
                 android:id="@+id/tvCategory"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp"
-                android:text="@{info.category}"
                 android:textColor="@android:color/black"
+                android:drawablePadding="@dimen/padding_medium"
                 android:textStyle="bold" />
-        </LinearLayout>
 
         <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp">
+            android:layout_marginTop="@dimen/margin_small">
 
             <ImageView
                 android:id="@+id/ivOpened"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="@dimen/small_icon"
+                android:layout_height="@dimen/small_icon"
                 android:adjustViewBounds="true"
                 android:src="@drawable/ic_clock" />
 
@@ -94,8 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp"
-                android:text="@{info.setOpen}"
+                android:layout_marginStart="@dimen/margin_medium"
                 android:textColor="@android:color/holo_green_light"
                 android:textStyle="bold" />
 
@@ -104,8 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="8dp"
-                android:text="@{info.timeOpen}"
+                android:layout_marginStart="@dimen/margin_small"
                 android:textColor="@android:color/darker_gray" />
         </LinearLayout>
 
@@ -113,25 +100,26 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="8dp"
+        android:layout_height="@dimen/space_medium"
         android:background="@android:color/darker_gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="16dp">
+        android:baselineAligned="false"
+        android:paddingTop="@dimen/padding_medium">
 
         <RatingBar
-            android:id="@+id/rtRating"
+            android:id="@+id/rbRating"
             style="@style/ImageRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:isIndicator="false"
             android:numStars="5"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
+            android:paddingTop="@dimen/padding_small"
+            android:paddingBottom="@dimen/padding_small"
             android:rating="0"
             android:scaleX="1.5"
             android:scaleY="1.5"
@@ -141,8 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:text="@string/tv_user_rating_hint" />
+            android:layout_marginTop="@dimen/margin_small" />
     </LinearLayout>
 
     <View
@@ -151,108 +138,68 @@
         android:background="@android:color/darker_gray" />
 
     <LinearLayout
+        android:baselineAligned="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_small"
         android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:tint="@android:color/holo_red_light"
-                android:src="@drawable/ic_camera" />
-
             <TextView
-                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:drawableTop="@drawable/ic_camera"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:textColor="@android:color/holo_red_light"
                 android:text="@string/btn_upload_image" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:tint="@android:color/holo_red_light"
-                android:src="@drawable/ic_location"
-                />
             <TextView
-                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_location"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/holo_red_light"
                 android:text="@string/btn_check_in"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:tint="@android:color/holo_red_light"
-                android:src="@drawable/ic_save"
-                />
             <TextView
-                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_save"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/holo_red_light"
                 android:text="@string/btn_save"/>
-        </LinearLayout>
     </LinearLayout>
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="@dimen/height_map"
         android:background="@android:color/darker_gray"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingBottom="4dp"
-        android:paddingTop="4dp"
+        android:paddingStart="@dimen/padding_small"
+        android:paddingEnd="@dimen/padding_tiny"
+        android:paddingTop="@dimen/padding_tiny"
+        android:layout_marginBottom="@dimen/margin_small"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_location"/>
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:maxLines="1"
-            android:text="@{info.address}"
-            android:layout_marginLeft="8dp"/>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
             android:layout_weight="1"
-            android:gravity="right"
-            android:paddingRight="16dp"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_navigation"
-                android:layout_gravity="right|center_vertical"/>
+            android:drawableStart="@drawable/ic_location"
+            android:drawablePadding="@dimen/padding_medium"
+            android:id="@+id/tvAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:gravity="center_vertical"
+            android:layout_marginStart="8dp"/>
             <TextView
+                android:gravity="center_vertical"
+                android:drawableStart="@drawable/ic_navigation"
+                android:drawablePadding="@dimen/padding_small"
+                android:id="@+id/tvDistance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{info.distance}"
-                android:layout_gravity="center_vertical"/>
-        </LinearLayout>
+                android:paddingEnd="@dimen/padding_medium"
+                android:layout_gravity="center_vertical|end"/>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -261,183 +208,114 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
+        android:paddingTop="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_small"
         android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_call"
-                />
+
             <TextView
-                android:layout_marginLeft="8dp"
-                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_call"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/call"
                 android:layout_gravity="center_vertical"
                 android:textColor="@android:color/holo_red_light" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:src="@drawable/ic_directions"
-                />
             <TextView
-                android:layout_marginLeft="8dp"
-                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_directions"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/direct"
                 android:layout_gravity="center_vertical"
                 android:textColor="@android:color/holo_red_light" />
-        </LinearLayout>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="@dimen/space_tiny"
         android:background="@android:color/darker_gray"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_credit" />
-
         <TextView
+            android:drawablePadding="@dimen/padding_medium"
+            android:drawableStart="@drawable/ic_credit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
             android:textColor="@android:color/black"
-            android:text="Có thanh toán bằng thẻ" />
-    </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_seat" />
-
+            android:text="@string/credit_card" />
             <TextView
+                android:drawableStart="@drawable/ic_seat"
+                android:drawablePadding="@dimen/padding_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginStart="16dp"
                 android:textColor="@android:color/black"
-                android:text="Có đặt chỗ trực tuyến" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:paddingLeft="16dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_order" />
+                android:text="@string/online_seat" />
 
             <TextView
+                android:drawableStart="@drawable/ic_order"
+                android:drawablePadding="@dimen/padding_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="16dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginStart="16dp"
                 android:textColor="@android:color/black"
-                android:text="Có order trực tuyến" />
-        </LinearLayout>
+                android:text="@string/online_order" />
+
     </LinearLayout>
 
     <View
+        android:layout_marginTop="@dimen/margin_small"
         android:layout_width="match_parent"
-        android:layout_height="1px"
+        android:layout_height="@dimen/space_tiny"
         android:background="@android:color/darker_gray"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_more_horiz" />
-
         <TextView
+            android:layout_marginEnd="@dimen/margin_small"
+            android:drawableStart="@drawable/ic_more_horiz"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:drawablePadding="@dimen/padding_medium"
             android:layout_width="match_parent"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_medium"
             android:textColor="@android:color/black"
-            android:text="Xem thêm thông tin" />
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="8dp"
-            android:src="@drawable/ic_arrow_right"/>
-    </LinearLayout>
+            android:text="@string/more_infomation" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="8dp"
         android:background="@android:color/darker_gray"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_wifi" />
 
         <TextView
+            android:layout_marginEnd="@dimen/margin_small"
+            android:drawableStart="@drawable/ic_more_horiz"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:drawablePadding="@dimen/padding_medium"
             android:layout_width="match_parent"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="16dp"
+            android:layout_marginTop="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_medium"
             android:textColor="@android:color/black"
-            android:text="Mật khẩu Wifi" />
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginRight="8dp"
-            android:src="@drawable/ic_arrow_right"/>
-    </LinearLayout>
+            android:text="@string/password_wifi" />
     <View
         android:layout_width="match_parent"
-        android:layout_height="8dp"
+        android:layout_height="@dimen/space_medium"
         android:background="@android:color/darker_gray"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"
+        android:paddingStart="@dimen/padding_medium"
+        android:paddingEnd="@dimen/padding_medium"
+        android:paddingTop="@dimen/padding_medium"
+        android:paddingBottom="@dimen/padding_medium"
         android:layout_height="wrap_content">
         <RatingBar
             style="@style/ImageRatingBar"

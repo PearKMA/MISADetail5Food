@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import vn.com.misa.detail5food.databases.SQLiteDataController;
 import vn.com.misa.detail5food.databinding.ActivityMainBinding;
@@ -24,8 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ArrayList<InfomationStore> mList;
     private SQLiteDataController mDatabase;
-
-
+    private TextView tvTitle,tvTotalFeedback,tvCategory,tvTimeOpen,tvStatus,tvAddress,tvDistance;
+    private RatingBar rbTotalRate;
+    private String mTitle="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,25 +43,48 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addSQL() {
-        mList.add(new InfomationStore(1,"HÀNG RONG 1",3.5f,1,"Đồ uống","Sắp mở cửa","06:30 SA - 10:00 CH",
+        mList.add(new InfomationStore("HÀNG RONG 1",3.5f,1,"Đồ uống","Sắp mở cửa","06:30 SA - 10:00 CH",
                 "96 Chợ Nhỏ, Đường Bé, Hà Nội","69Km"));
-        mList.add(new InfomationStore(2,"HÀNG RONG 2",2.5f,1,"Đồ ăn","Đã mở cửa","08:30 SA - 08:00 CH",
+        mList.add(new InfomationStore("HÀNG RONG 2",2.5f,1,"Đồ ăn","Đã mở cửa","08:30 SA - 08:00 CH",
                 "69 Chợ Lớn, Đường To, Hà Nội","96Km"));
-        mList.add(new InfomationStore(3,"HÀNG RONG 3",5.0f,1,"Đồ chơi","Đóng cửa","07:30 SA - 06:00 CH",
+        mList.add(new InfomationStore("HÀNG RONG 3",5.0f,1,"Đồ chơi","Đóng cửa","07:30 SA - 06:00 CH",
                 "969 Chợ Cái, Đường Phèn, Hà Nội","696Km"));
-
         for (InfomationStore info: mList){
             mDatabase.addInfomationStore(info);
         }
+        mTitle="HÀNG RONG";
+        setData(new InfomationStore("HÀNG RONG",4.5f,1,"Đồ uống","Sắp mở cửa","06:30 SA - 10:00 CH",
+                "96 Chợ Nhỏ, Đường Bé, Hà Nội","69Km"));
     }
+    private void setData(InfomationStore infomationStore){
+        String totalFeedback=infomationStore.getTotalFeedback()+" "+getResources().getString(R.string.total_rating);
+        mTitle=infomationStore.getNameStore().toUpperCase();
 
+        tvTitle.setText(infomationStore.getNameStore());
+        tvTotalFeedback.setText(totalFeedback);
+        tvCategory.setText(infomationStore.getCategory());
+        tvStatus.setText(infomationStore.getSetOpen());
+        tvTimeOpen.setText(infomationStore.getTimeOpen());
+        tvAddress.setText(infomationStore.getAddress());
+        tvDistance.setText(infomationStore.getDistance());
+        rbTotalRate.setRating(infomationStore.getTotalRate());
+    }
     /**
      * findviewbyid các view
      */
     private void addControl() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         mList = new ArrayList<>();
         mDatabase=new SQLiteDataController(this);
+        tvTitle= findViewById(R.id.tvNameStore);
+        tvTotalFeedback= findViewById(R.id.tvTotalFeedback);
+        tvCategory= findViewById(R.id.tvCategory);
+        tvStatus= findViewById(R.id.tvOpened);
+        tvTimeOpen= findViewById(R.id.tvTimeOpenAndClose);
+        tvAddress= findViewById(R.id.tvAddress);
+        tvDistance= findViewById(R.id.tvDistance);
+        rbTotalRate= findViewById(R.id.rbTotalRate);
+
     }
 
     /**
@@ -68,13 +93,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setToolBar() {
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back);
 
         final CollapsingToolbarLayout collapsingToolbar =
-                (CollapsingToolbarLayout) findViewById(R.id.collapsingToolbar);
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appBarLayout);
+                findViewById(R.id.collapsingToolbar);
+        AppBarLayout appBarLayout = findViewById(R.id.appBarLayout);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShow = false;
             int scrollRange = -1;
@@ -85,7 +110,11 @@ public class MainActivity extends AppCompatActivity {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
                 if (scrollRange + verticalOffset == 0) {
-                    collapsingToolbar.setTitle("HÀNG RONG");
+                    if (mTitle.equals("")) {
+                        collapsingToolbar.setTitle(""+mTitle);
+                    }else {
+                        collapsingToolbar.setTitle(""+getResources().getString(R.string.no_title));
+                    }
                     isShow = true;
                 } else if (isShow) {
                     collapsingToolbar.setTitle("");
@@ -104,28 +133,25 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-//        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-//
-//        InfomationStore infomationStore = new InfomationStore();
-
-
+        InfomationStore infomationStore;
         switch (item.getItemId()) {
             case R.id.mnuShare:
-                mDatabase.getInfomationStoreById(1);
+                infomationStore=mDatabase.getInfomationStoreById(1);
                 Toast.makeText(getApplicationContext(), "Shared", Toast.LENGTH_LONG).show();
-                return true;
+                break;
             case R.id.mnuReport:
-                mDatabase.getInfomationStoreById(2);
+                infomationStore=mDatabase.getInfomationStoreById(2);
                 Toast.makeText(getApplicationContext(), "Reported", Toast.LENGTH_LONG).show();
-                return true;
+                break;
             case android.R.id.home:
-                mDatabase.getInfomationStoreById(3);
+                infomationStore=mDatabase.getInfomationStoreById(3);
 //                finish();
-                return true;
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }
-
+        setData(infomationStore);
+        return true;
     }
 
     @Override

@@ -18,4 +18,9 @@
     <string name="more_infomation">Xem thêm thông tin</string>
     <string name="call">Gọi điện</string>
     <string name="direct">Chỉ đường</string>
+    <string name="password_wifi">Mật khẩu Wifi</string>
+    <string name="online_order">Có order trực tuyến</string>
+    <string name="online_seat">Có đặt chỗ trực tuyến</string>
+    <string name="credit_card">Có thanh toán bằng thẻ</string>
+    <string name="no_title">Không có tiêu đề</string>
 </resources>

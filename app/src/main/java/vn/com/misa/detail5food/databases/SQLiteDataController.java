@@ -61,15 +61,14 @@ public class SQLiteDataController extends SQLiteOpenHelper {
             cursor.moveToFirst();
 
         InfomationStore infomationStore = new InfomationStore(
-                cursor.getInt(1)
-                ,cursor.getString(2)
-                ,cursor.getFloat(3)
-                ,cursor.getInt(4)
+                cursor.getString(1)
+                ,cursor.getFloat(2)
+                ,cursor.getInt(3)
+                ,cursor.getString(4)
                 ,cursor.getString(5)
                 ,cursor.getString(6)
                 ,cursor.getString(7)
-                ,cursor.getString(8)
-                ,cursor.getString(9));
+                ,cursor.getString(8));
         cursor.close();
         db.close();
         return infomationStore;

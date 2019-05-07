@@ -3,7 +3,6 @@ package vn.com.misa.detail5food.model;
 import android.graphics.Bitmap;
 
 public class InfomationStore {
-    private int idStore;
     private String nameStore;
     private float totalRate;
     private int totalFeedback;
@@ -17,8 +16,7 @@ public class InfomationStore {
     public InfomationStore() {
     }
 
-    public InfomationStore(int idStore, String nameStore, float totalRate, int totalFeedback, String category, String setOpen, String timeOpen, String address, String distance) {
-        this.idStore = idStore;
+    public InfomationStore(String nameStore, float totalRate, int totalFeedback, String category, String setOpen, String timeOpen, String address, String distance) {
         this.nameStore = nameStore;
         this.totalRate = totalRate;
         this.totalFeedback = totalFeedback;
@@ -27,14 +25,6 @@ public class InfomationStore {
         this.timeOpen = timeOpen;
         this.address = address;
         this.distance = distance;
-    }
-
-    public int getIdStore() {
-        return idStore;
-    }
-
-    public void setIdStore(int idStore) {
-        this.idStore = idStore;
     }
 
     public String getNameStore() {
